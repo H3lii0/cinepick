@@ -1,2 +1,5 @@
 name = "cinepick"
 compatibility_date = "2026-03-09"
+
+[assets]
+directory = "./dist/cinepick"
