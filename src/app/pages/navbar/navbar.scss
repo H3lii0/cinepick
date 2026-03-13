@@ -1,0 +1,133 @@
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+  transition: background 240ms ease, backdrop-filter 240ms ease, border-color 240ms ease;
+}
+
+.top-nav-inner {
+	width: min(1536px, 100% - 2rem);
+	margin-inline: auto;
+	min-height: 4.25rem;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.brand {
+	border: 0;
+	background: transparent;
+	color: inherit;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	cursor: pointer;
+}
+
+.brand-mark {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 0.7rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	background: linear-gradient(135deg, var(--violet), var(--fuchsia));
+	box-shadow: 0 12px 22px rgba(139, 92, 246, 0.35);
+}
+
+.brand-mark icon-player-circle {
+  height: 22px;
+}
+
+.brand-text {
+	font-weight: 800;
+	letter-spacing: -0.03em;
+}
+
+.brand-text span {
+	background: linear-gradient(90deg, #a78bfa, #f0abfc);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.top-tools {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+}
+
+.tool-btn {
+	width: 2.25rem;
+	height: 2.25rem;
+	border: 0;
+	color: rgba(255, 255, 255, 0.68);
+	border-radius: 999px;
+	background: transparent;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: 180ms ease;
+}
+
+.tool-btn:hover {
+	color: white;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.tool-btn-notification::after {
+	content: '';
+	width: 0.4rem;
+	height: 0.4rem;
+	background: var(--violet);
+	border-radius: 50%;
+	position: absolute;
+	margin-top: -0.8rem;
+	margin-left: 0.8rem;
+}
+
+.search-pill {
+	width: min(20rem, 42vw);
+	min-height: 2.2rem;
+	border-radius: 999px;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	border: 1px solid rgba(255, 255, 255, 0.24);
+	background: rgba(255, 255, 255, 0.08);
+	padding: 0 0.45rem 0 0.75rem;
+	color: rgba(255, 255, 255, 0.55);
+}
+
+.search-pill input {
+	flex: 1;
+	min-width: 0;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	color: white;
+	font-size: 0.85rem;
+}
+
+.search-pill input::placeholder {
+	color: rgba(255, 255, 255, 0.45);
+}
+
+.avatar {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	border: 0;
+	color: white;
+	cursor: pointer;
+	background: linear-gradient(135deg, var(--violet), var(--fuchsia));
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
