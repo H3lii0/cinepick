@@ -1,0 +1,6 @@
+.home {
+  min-height: 100dvh;
+	background: radial-gradient(circle at 20% 5%, #241437 0%, rgba(10, 10, 15, 0) 42%),
+		radial-gradient(circle at 80% 10%, #1a1a42 0%, rgba(10, 10, 15, 0) 45%),
+		var(--bg-main);
+}
