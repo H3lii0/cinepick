@@ -1,5 +1,5 @@
 
-<header class="top-nav">
+<header class="top-nav" [class.top-nav-compact]="navbarCompact()">
   <div class="top-nav-inner">
     <button class="brand">
       <span class="brand-mark">
@@ -10,7 +10,23 @@
       </span>
     </button>
 
+    <!-- <nav class="desktop-links" aria-label="Main navigation">
+      @for (link of navLinkIds; track link.id) {
+        <button
+          type="button"
+          class="desktop-link"
+          [class.desktop-link-active]="isNavActive(link.id)"
+          (click)="scrollTo(link.id)"
+        >
+          {{ 'nav.' + link.id | transloco }}
+        </button>
+      }
+    </nav> -->
+
     <div class="top-tools">
+      <!-- <button type="button" class="tool-btn" (click)="toggleLang()">
+        {{ langSvc.isEnglish() ? 'PT' : 'EN' }}
+      </button> -->
       @if (searchOpenBar()) {
           <label class="search-pill" aria-label="Search titles">
             <app-icon-search [size]="16"></app-icon-search>
