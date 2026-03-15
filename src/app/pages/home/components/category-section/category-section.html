@@ -1,0 +1,82 @@
+<section id="section-category" class="category-section frame">
+	<header class="section-header category-header">
+		<div class="section-title-wrap">
+			<span class="title-icon" [attr.data-accent]="activeCategoryMeta().accent"></span>
+			<div>
+				<h2 class="section-title">{{ 'category.sectionTitle' | transloco }}</h2>
+				<p class="section-subtitle">{{ 'category.sectionSubtitle' | transloco }}</p>
+			</div>
+		</div>
+	</header>
+
+	<div class="category-toolbar">
+		<div class="category-tabs">
+			@for (cat of categoryMetas; track cat.id) {
+				<button
+					type="button"
+					class="category-tab"
+					[attr.data-accent]="cat.accent"
+					[class.category-tab-active]="activeCategory() === cat.id"
+					(click)="selectCategory(cat.id)"
+				>
+					{{ (cat.id === 'all' ? 'category.allContent' : 'filters.' + cat.id) | transloco }}
+				</button>
+			}
+		</div>
+
+		<div class="sort-wrap">
+			<button type="button" class="sort-btn" (click)="sortOpen.set(!sortOpen())">
+				{{ 'category.sortLabel' | transloco }} {{ 'sort.' + sortBy() | transloco }}
+			</button>
+
+			@if (sortOpen()) {
+				<div class="sort-menu">
+					@for (option of sortOptionIds; track option.id) {
+						<button
+							type="button"
+							class="sort-option"
+							[class.sort-option-active]="option.id === sortBy()"
+							(click)="selectSort(option.id)"
+						>
+							{{ 'sort.' + option.id | transloco }}
+						</button>
+					}
+				</div>
+			}
+		</div>
+	</div>
+
+	<p class="result-line">
+		{{ 'category.showing' | transloco: { count: filteredMedia().length } }}
+		@if (activeCategory() !== 'all') {
+			{{ 'category.inLabel' | transloco }}
+			{{ (activeCategory() === 'all' ? 'category.allContent' : 'filters.' + activeCategory()) | transloco }}
+		}
+		· {{ 'category.sortedBy' | transloco }} {{ 'sort.' + sortBy() | transloco }}
+	</p>
+
+	<div class="category-grid">
+		@for (media of filteredMedia(); track media.id) {
+			<article class="media-card media-card-lg">
+				<div class="media-poster-wrap">
+					<img [src]="media.poster" [alt]="media.title" class="media-poster" />
+					<span class="card-rating">{{ media.rating }}</span>
+					<span class="card-type" [class]="mediaTypeClass(media.type)">{{ mediaChipLabel(media.type) }}</span>
+					<div class="media-hover-panel">
+						<button type="button" class="card-play-btn">{{ 'card.trailer' | transloco }}</button>
+						<button type="button" class="card-watchlist-btn">{{ 'card.watchlist' | transloco }}</button>
+					</div>
+				</div>
+
+				<div class="media-info">
+					<h4>{{ media.title }}</h4>
+					<p>
+						<span>{{ media.year }}</span>
+						<span>·</span>
+						<span>{{ media.genres[0] }}</span>
+					</p>
+				</div>
+			</article>
+		}
+	</div>
+</section>
