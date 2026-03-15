@@ -1,0 +1,94 @@
+{
+  "nav": {
+    "movies": "Filmes",
+    "series": "Séries",
+    "anime": "Anime",
+    "documentary": "Documentário",
+    "documentaries": "Documentários",
+    "trending": "Em Alta",
+    "tmdbLive": "TMDB Ao Vivo",
+    "recommendation": "Recomendação",
+    "backHome": "Voltar para WatchReel"
+  },
+  "hero": {
+    "badge": "Motor de Descoberta",
+    "title1": "O que assistir",
+    "title2": "hoje?",
+    "subtitle": "Deixa a gente escolher algo perfeito pra você.",
+    "cta": "Recomendação Aleatória",
+    "loading": "Encontrando algo ótimo...",
+    "error": "Não foi possível carregar a recomendação. Tente novamente.",
+    "errorNoMatch": "Nenhum título encontrado para este filtro. Tente \"Tudo\" ou outro filtro."
+  },
+  "filters": {
+    "all": "Tudo",
+    "movie": "Filmes",
+    "series": "Séries",
+    "documentary": "Documentários",
+    "anime": "Anime"
+  },
+  "recCard": {
+    "trailer": "Trailer",
+    "tryAnother": "Tentar Outro",
+    "on": "Em:"
+  },
+  "mediaType": {
+    "movie": "Filme",
+    "series": "Série",
+    "anime": "Anime",
+    "documentary": "Documentário"
+  },
+  "weekly": {
+    "sectionTitle": "Novidades da Semana",
+    "sectionSubtitle": "Lançamentos fresquinhos dessa semana em todas as categorias",
+    "newBadge": "NOVO",
+    "movies": { "title": "Filmes", "subtitle": "Nos cinemas e streaming essa semana" },
+    "series": { "title": "Séries", "subtitle": "Novos episódios e temporadas disponíveis" },
+    "anime": { "title": "Anime", "subtitle": "Últimos lançamentos e novas temporadas" },
+    "docs": { "title": "Documentários", "subtitle": "Docs imperdíveis disponíveis essa semana" }
+  },
+  "trending": {
+    "sectionTitle": "Em Alta essa Semana",
+    "sectionSubtitle": "O que todo mundo está assistindo agora",
+    "badge": "EM ALTA",
+    "topPicks": "Melhores Escolhas"
+  },
+  "category": {
+    "sectionTitle": "Navegar por Categoria",
+    "sectionSubtitle": "Descubra conteúdo personalizado para você",
+    "allContent": "Todo Conteúdo",
+    "sortLabel": "Ordenar:",
+    "showing": "Exibindo {{ count }} títulos",
+    "inLabel": "em",
+    "sortedBy": "Ordenado por"
+  },
+  "sort": {
+    "popularity": "Popularidade",
+    "release": "Data de Lançamento",
+    "rating": "Avaliação"
+  },
+  "card": {
+    "trailer": "Trailer",
+    "watchlist": "Minha Lista",
+    "list": "Lista"
+  },
+  "footer": {
+    "tagline": "Seu motor de descoberta cinematográfica",
+    "about": "Sobre",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Uso",
+    "contact": "Contato",
+    "help": "Central de Ajuda",
+    "copyright": "© 2026 WatchReel. Todo conteúdo exibido é apenas para descoberta.",
+    "disclaimer": "Dados de streaming são ilustrativos",
+    "poweredBy": "Desenvolvido por WatchReel AI"
+  },
+  "bottomNav": {
+    "hero": "Início",
+    "home": "Início",
+    "movies": "Filmes",
+    "series": "Séries",
+    "anime": "Anime",
+    "trending": "Em Alta"
+  }
+}
