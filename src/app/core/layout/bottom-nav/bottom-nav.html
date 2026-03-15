@@ -1,0 +1,8 @@
+<nav class="bottom-nav" aria-label="Mobile navigation">
+	@for (item of bottomNavIds; track item.id) {
+		<button type="button" [class.bottom-nav-active]="isBottomNavActive(item.id)" (click)="scrollTo(item.id)">
+			<span class="indicator"></span>
+			<small>{{ 'bottomNav.' + item.id | transloco }}</small>
+		</button>
+	}
+</nav>
