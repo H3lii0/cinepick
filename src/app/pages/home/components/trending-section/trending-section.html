@@ -1,0 +1,81 @@
+<section id="section-trending" class="trending-section frame">
+	<header class="section-header">
+		<div class="section-title-wrap">
+			<span class="title-icon accent-rose"></span>
+			<div>
+				<h2 class="section-title">{{ 'trending.sectionTitle' | transloco }}</h2>
+				<p class="section-subtitle">{{ 'trending.sectionSubtitle' | transloco }}</p>
+			</div>
+		</div>
+
+		<div class="rail-controls">
+			<button type="button" class="circle-btn" aria-label="Scroll left" (click)="scrollRail(trendingRail, 'left')">
+				<app-chevron-left-icon [size]="14"></app-chevron-left-icon>
+			</button>
+			<button type="button" class="circle-btn" aria-label="Scroll right" (click)="scrollRail(trendingRail, 'right')">
+				<app-chevron-right-icon [size]="14"></app-chevron-right-icon>
+			</button>
+		</div>
+	</header>
+
+	<div class="featured-rail" #trendingRail>
+		@for (item of trending; track item.id; let rank = $index) {
+			<article class="featured-card">
+				<img [src]="item.backdrop" [alt]="item.title" class="featured-bg" />
+				<div class="featured-overlay"></div>
+
+				<span class="featured-rank">{{ rank + 1 }}</span>
+				<span class="featured-trending">{{ 'trending.badge' | transloco }}</span>
+				<span class="featured-score">{{ item.rating }}</span>
+
+				<div class="featured-bottom">
+					<div class="featured-genres">
+						@for (genre of item.genres.slice(0, 2); track genre) {
+							<span>{{ genre }}</span>
+						}
+					</div>
+					<h3>{{ item.title }}</h3>
+					<p>
+						{{ item.year }} · {{ mediaTypeLabel(item.type) | transloco }}
+						@if (item.duration) {
+							· {{ item.duration }}
+						}
+					</p>
+					<div class="featured-actions">
+						<button type="button">{{ 'card.trailer' | transloco }}</button>
+						<button type="button" class="ghost-btn">{{ 'card.list' | transloco }}</button>
+					</div>
+				</div>
+			</article>
+		}
+	</div>
+
+	<div class="top-picks">
+		<h3>{{ 'trending.topPicks' | transloco }}</h3>
+		<div class="top-picks-grid">
+			@for (item of trending.slice(0, 3); track item.id; let rank = $index) {
+				<article class="top-pick-row">
+					<span class="top-rank">{{ rank + 1 }}</span>
+					<img [src]="item.poster" [alt]="item.title" />
+					<div class="top-info">
+						<small>{{ 'trending.badge' | transloco }}</small>
+						<h4>{{ item.title }}</h4>
+						<p>
+							<span>{{ item.rating }}</span>
+							<span>·</span>
+							<span>{{ item.year }}</span>
+							<span>·</span>
+							<span>{{ mediaTypeLabel(item.type) | transloco }}</span>
+						</p>
+						<div class="tiny-streams">
+							@for (stream of item.streaming.slice(0, 2); track stream) {
+								<span [style.background-color]="streamingColor(stream)">{{ stream }}</span>
+							}
+						</div>
+					</div>
+					<button type="button" class="play-dot" aria-label="Play trailer"></button>
+				</article>
+			}
+		</div>
+	</div>
+</section>
