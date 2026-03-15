@@ -1,0 +1,137 @@
+<section id="hero-section" class="hero-section">
+  <div class="hero-backdrop">
+    <img src="/src/app/shared/img/backdrop.jpg" alt="backdrop image">
+    <div class="hero-overlay-right"></div>
+    <div class="hero-overlay-bottom"></div>
+    <span class="hero-orb hero-orb-a"></span>
+    <span class="hero-orb hero-orb-b"></span>
+  </div>
+
+  <div class="hero-content frame">
+    <div class="hero-copy">
+      <p class="hero-badge stage-1">
+        <app-shuffle-icon [size]="12"></app-shuffle-icon>
+        {{ 'hero.badge' | transloco }}
+      </p>
+
+      <h1 class="hero-title stage-2">
+        {{ 'hero.title1' | transloco }}<br />
+        <span>{{ 'hero.title2' | transloco }}</span>
+      </h1>
+
+      <p class="hero-subtitle stage-3">{{ 'hero.subtitle' | transloco }}</p>
+
+      <div class="hero-filters stage-4">
+          @for (filterId of heroFilterIds; track filterId) {
+            <button
+              type="button"
+              class="pill-btn"
+              [class.pill-btn-active]="selectedFilter() === filterId"
+              (click)="onHeroFilterSelect(filterId)"
+            >
+              {{ 'filters.' + filterId | transloco }}
+            </button>
+          }
+      </div>
+
+      <button
+        type="button"
+        class="recommend-btn stage-5"
+        [disabled]="isLoading()"
+        (click)="handleRecommend()"
+      >
+        <app-sparkles-animation-icon
+          [size]="18"
+          [svgStyle]="isLoading() ? 'sparkles-draw' : ''"
+        />
+          @if (isLoading()) {
+            Finding something great...
+          } @else {
+            Random Recommendation
+          }
+      </button>
+
+      @if (recommendationError()) {
+        <p class="recommend-error">{{ recommendationError()! | transloco }}</p>
+      }
+    </div>
+
+    @if (recommendation(); as rec) {
+     <article class="rec-card">
+        <div class="rec-card-bg">
+          <img [src]="rec.backdrop" alt="" />
+        </div>
+
+        <div class="rec-card-body">
+          <div class="rec-poster-wrap">
+            <img [src]="rec.poster" [alt]="rec.title" class="rec-poster" />
+            <span class="rec-rating-chip">
+
+              {{ rec.rating }}
+            </span>
+          </div>
+
+          <div class="rec-info">
+            <span class="type-chip">{{ mediaTypeLabel(rec.type) | transloco }}</span>
+            <h2>{{ rec.title }}</h2>
+
+            <div class="meta-row">
+              <span>
+
+                {{ rec.year }}
+              </span>
+              @if (rec.duration) {
+                <span>
+
+                  {{ rec.duration }}
+                </span>
+              }
+              @if (rec.seasons) {
+                <span>
+
+                  {{ rec.seasons }}S · {{ rec.episodes }}ep
+                </span>
+              }
+              <span class="rating-value">
+
+                {{ rec.rating }}/10
+              </span>
+            </div>
+
+            <div class="genre-row">
+              @for (genre of rec.genres.slice(0, 3); track genre) {
+                <span>{{ genre }}</span>
+              }
+            </div>
+
+            <p>{{ rec.description }}</p>
+
+            <!--FALTA VER COMO IREI IMPLEMENTAR OS BOTÕES DE STREAMING-->
+            <div class="stream-row">
+              <small>{{ 'recCard.on' | transloco }}</small>
+              @for (stream of rec.streaming.slice(0, 3); track stream) {
+                <span [style.background-color]="streamingColor(stream)">{{ stream }}</span>
+              }
+            </div>
+
+            <div class="rec-actions">
+              <!--vai ser um botao de ver mais-->
+              <button type="button" class="action-primary">
+
+                {{ 'recCard.trailer' | transloco }}
+              </button>
+              <button
+                type="button"
+                class="action-ghost"
+                [disabled]="isLoading()"
+                (click)="handleRecommend(rec.id)"
+              >
+                {{ 'recCard.tryAnother' | transloco }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>
