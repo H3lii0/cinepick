@@ -5,6 +5,11 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { WEEKLY_SECTIONS_META, getWeeklyReleases } from '../../../../constants/navigation.constants';
 import type { Media, MediaType } from '../../../../models/media.model';
 import type { CategoryMeta } from '../../../../types/navigation.types';
+import { SparklesIcon } from "../../../../shared/icons/ui/sparkles";
+import { StarIcon } from "../../../../shared/icons/ui/star";
+import { CalendarIcon } from '../../../../shared/icons/ui/calendar';
+import { ChevronLeftIcon } from "../../../../shared/icons/navigation/chevron-left";
+import { ChevronRightIcon } from '../../../../shared/icons/navigation/chevron-right';
 
 type WeeklySection = {
   key: string;
@@ -15,7 +20,14 @@ type WeeklySection = {
 
 @Component({
   selector: 'app-weekly-rail',
-  imports: [TranslocoModule],
+  imports: [
+    TranslocoModule,
+    SparklesIcon,
+    StarIcon,
+    CalendarIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon
+  ],
   templateUrl: './weekly-rail.html',
   styleUrl: './weekly-rail.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,15 +58,12 @@ export class WeeklyRail {
       return 'DOC';
     }
     if (type === 'movie') {
-      return 'FILM';
+      return 'MOVIE';
     }
     return 'ANIME';
   }
 
   mediaTypeClass(type: MediaType): string {
-    if (type === 'anime') {
-      return 'chip-anime';
-    }
     if (type === 'series') {
       return 'chip-series';
     }

@@ -6,7 +6,7 @@ import { MediaFilter } from '../../../models/media.model';
 import { TmdbEndpointBuilder } from './tmdb-endpoint.builder';
 
 const BASE_URL          = 'https://api.themoviedb.org/3';
-const TMDB_BEARER_TOKEN = 'API_KEY';
+const TMDB_BEARER_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNjhjMTliYmM3MmM3ZDg1ZDYzN2VmNDA4ZWFjYTNjYiIsIm5iZiI6MTc3MzA3MDM0NS4yMzEsInN1YiI6IjY5YWVlODA5YjdhODQwNDdkMzgwZWYyNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wc-WQ_MOouI_Om9ejtkswkrkLqOZPA1abHn_ejIqhVI';
 
 export type RecommendationLanguage = 'pt-BR' | 'en-US';
 

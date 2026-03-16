@@ -23,7 +23,7 @@ export class HomeNavigationService {
   }
 
   scrollTo(section: SectionId): void {
-    if (section === 'movies' || section === 'series' || section === 'anime' || section === 'documentary') {
+    if (section === 'movies' || section === 'series' || section === 'documentary') {
       this.activeCategory.set(this.mapSectionToCategory(section));
     }
 
@@ -50,9 +50,6 @@ export class HomeNavigationService {
     if (section === 'series') {
       return 'series';
     }
-    if (section === 'anime') {
-      return 'anime';
-    }
     if (section === 'documentary') {
       return 'documentary';
     }
@@ -65,9 +62,6 @@ export class HomeNavigationService {
     }
     if (category === 'series') {
       return 'series';
-    }
-    if (category === 'anime') {
-      return 'anime';
     }
     if (category === 'documentary') {
       return 'documentary';

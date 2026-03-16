@@ -1,4 +1,4 @@
-export type MediaType = 'movie' | 'series' | 'anime' | 'documentary';
+export type MediaType = 'movie' | 'series' | 'documentary';
 
 export type MediaFilter = MediaType | 'all';
 

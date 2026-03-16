@@ -4,21 +4,3 @@
 		radial-gradient(circle at 80% 10%, #1a1a42 0%, rgba(10, 10, 15, 0) 45%),
 		var(--bg-main);
 }
-
-.section-divider {
-	width: min(1536px, 100% - 4rem);
-	margin-inline: auto;
-	height: 1px;
-	background: linear-gradient(
-		90deg,
-		rgba(255, 255, 255, 0) 0%,
-		rgba(255, 255, 255, 0.12) 50%,
-		rgba(255, 255, 255, 0) 100%
-	);
-}
-
-@media (max-width: 560px) {
-	.section-divider {
-		width: calc(100% - 1rem);
-	}
-}

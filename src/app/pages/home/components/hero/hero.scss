@@ -240,6 +240,10 @@
   padding: 0.2rem 0.35rem;
 }
 
+.rec-rating-chip app-star-icon {
+	color: #facc15;
+}
+
 .rec-info {
   min-width: 0;
 }
@@ -391,6 +395,10 @@
 
 .stage-5 {
   animation-delay: 400ms;
+}
+
+app-plus-icon {
+  height: 18px;
 }
 
 @media (min-width: 740px) {

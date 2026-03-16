@@ -6,6 +6,7 @@ import { ChevronLeftIcon } from '../../../../shared/icons/navigation/chevron-lef
 import { ChevronRightIcon } from '../../../../shared/icons/navigation/chevron-right';
 import { getTrending, streamingBrandColors } from '../../../../constants/navigation.constants';
 import type { MediaType } from '../../../../models/media.model';
+import { FlameIcon } from "../../../../shared/icons/ui/flame";
 
 @Component({
   selector: 'app-trending-section',
@@ -13,7 +14,8 @@ import type { MediaType } from '../../../../models/media.model';
     ChevronLeftIcon,
     ChevronRightIcon,
     TranslocoModule,
-  ],
+    FlameIcon
+],
   templateUrl: './trending-section.html',
   styleUrl: './trending-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

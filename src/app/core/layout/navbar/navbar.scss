@@ -67,6 +67,12 @@
 	gap: 0.3rem;
 }
 
+@media (min-width: 768px) {
+	.desktop-links {
+		display: flex;
+	}
+}
+
 .desktop-link {
 	border: 0;
 	cursor: pointer;
