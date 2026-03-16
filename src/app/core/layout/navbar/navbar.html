@@ -1,7 +1,12 @@
 
 <header class="top-nav" [class.top-nav-compact]="navbarCompact()">
   <div class="top-nav-inner">
-    <button class="brand">
+    <button
+      type="button"
+      class="brand"
+      (click)="scrollTo('hero')"
+      aria-label="Go to hero section"
+      >
       <span class="brand-mark">
         <icon-player-circle [size]="22"></icon-player-circle>
       </span>
@@ -10,7 +15,7 @@
       </span>
     </button>
 
-    <!-- <nav class="desktop-links" aria-label="Main navigation">
+    <nav class="desktop-links" [attr.aria-label]="'navbar.mainNavigationAria' | transloco">
       @for (link of navLinkIds; track link.id) {
         <button
           type="button"
@@ -21,19 +26,20 @@
           {{ 'nav.' + link.id | transloco }}
         </button>
       }
-    </nav> -->
+    </nav>
 
     <div class="top-tools">
-      <!-- <button type="button" class="tool-btn" (click)="toggleLang()">
-        {{ langSvc.isEnglish() ? 'PT' : 'EN' }}
-      </button> -->
+      <button type="button" class="tool-btn" (click)="toggleLang()">
+        {{ (langSvc.isEnglish() ? 'navbar.langToggleToPt' : 'navbar.langToggleToEn') | transloco }}
+      </button>
+
       @if (searchOpenBar()) {
-          <label class="search-pill" aria-label="Search titles">
+          <label class="search-pill" [attr.aria-label]="'navbar.searchTitlesAria' | transloco">
             <app-icon-search [size]="16"></app-icon-search>
             <input
               type="text"
               [value]="searchValue()"
-              placeholder="Search titles..."
+              [attr.placeholder]="'navbar.searchPlaceholder' | transloco"
             />
             <button type="button" class="tool-btn" (click)="closeSearchBar()">
               <app-close-icon [size]="16"></app-close-icon>
@@ -44,17 +50,19 @@
         type="button"
         class="tool-btn"
         (click)="toggleSearchBar()"
-        aria-label="Open search">
+        [attr.aria-label]="'navbar.openSearchAria' | transloco">
           <app-icon-search [size]="16"></app-icon-search>
         </button>
       }
 
       <button
         type="button"
-        class="tool-btn tool-btn-notification" aria-label="Notifications"
-        >
+        class="tool-btn tool-btn-notification"
+        [attr.aria-label]="'navbar.notificationsAria' | transloco"
+      >
+        <app-bell-notifications-icon [size]="20"></app-bell-notifications-icon>
       </button>
-      <button type="button" class="avatar" aria-label="Profiles">
+      <button type="button" class="avatar" [attr.aria-label]="'navbar.profilesAria' | transloco">
           <app-user-icon [size]="16"></app-user-icon>
       </button>
     </div>

@@ -1,6 +1,6 @@
 <section id="hero-section" class="hero-section">
   <div class="hero-backdrop">
-    <img src="/src/app/shared/img/backdrop.jpg" alt="backdrop image">
+    <img src="/public/assets/img/backdrop.jpg" alt="backdrop image">
     <div class="hero-overlay-right"></div>
     <div class="hero-overlay-bottom"></div>
     <span class="hero-orb hero-orb-a"></span>
@@ -10,7 +10,9 @@
   <div class="hero-content frame">
     <div class="hero-copy">
       <p class="hero-badge stage-1">
-        <app-shuffle-icon [size]="12"></app-shuffle-icon>
+        <app-sparkles-animation-icon
+          [size]="18"
+        />
         {{ 'hero.badge' | transloco }}
       </p>
 
@@ -45,9 +47,9 @@
           [svgStyle]="isLoading() ? 'sparkles-draw' : ''"
         />
           @if (isLoading()) {
-            Finding something great...
+            {{ 'hero.loading' | transloco }}
           } @else {
-            Random Recommendation
+            {{ 'hero.cta' | transloco }}
           }
       </button>
 
@@ -66,7 +68,7 @@
           <div class="rec-poster-wrap">
             <img [src]="rec.poster" [alt]="rec.title" class="rec-poster" />
             <span class="rec-rating-chip">
-
+              <app-star-icon [size]="10"></app-star-icon>
               {{ rec.rating }}
             </span>
           </div>
@@ -77,23 +79,11 @@
 
             <div class="meta-row">
               <span>
-
+                <app-calendar-icon [size]="16"></app-calendar-icon>
                 {{ rec.year }}
               </span>
-              @if (rec.duration) {
-                <span>
-
-                  {{ rec.duration }}
-                </span>
-              }
-              @if (rec.seasons) {
-                <span>
-
-                  {{ rec.seasons }}S · {{ rec.episodes }}ep
-                </span>
-              }
               <span class="rating-value">
-
+                <app-star-icon [size]="10"></app-star-icon>
                 {{ rec.rating }}/10
               </span>
             </div>
@@ -117,16 +107,8 @@
             <div class="rec-actions">
               <!--vai ser um botao de ver mais-->
               <button type="button" class="action-primary">
-
-                {{ 'recCard.trailer' | transloco }}
-              </button>
-              <button
-                type="button"
-                class="action-ghost"
-                [disabled]="isLoading()"
-                (click)="handleRecommend(rec.id)"
-              >
-                {{ 'recCard.tryAnother' | transloco }}
+                <app-plus-icon [size]="18"></app-plus-icon>
+                {{ 'recCard.viewDetails' | transloco }}
               </button>
             </div>
           </div>

@@ -29,7 +29,6 @@ export class TmdbEndpointBuilder {
     const map: Record<MediaFilter, TmdbEndpointRequest[]> = {
       movie:       [movie()],
       series:      [tv()],
-      anime:       [tv(`with_genres=${GENRE_ANIME}`)],
       documentary: [
         movie(`with_genres=${GENRE_DOCUMENTARY}`),
         tv(`with_genres=${GENRE_DOCUMENTARY}`),

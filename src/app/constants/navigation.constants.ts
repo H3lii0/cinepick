@@ -14,7 +14,6 @@ export const SECTION_DOM_IDS: Record<SectionId, string> = {
   trending: 'section-trending',
   movies: 'section-category',
   series: 'section-category',
-  anime: 'section-category',
   documentary: 'section-category',
   category: 'section-category',
 };
@@ -29,7 +28,6 @@ export const HERO_FILTER_IDS: MediaFilter[] = [
 export const NAV_LINK_IDS: Array<{ id: SectionId; icon: Icons }> = [
   { id: 'movies', icon: FilmIcon },
   { id: 'series', icon: TvIcon },
-  { id: 'anime', icon: FilmIcon },
   { id: 'documentary', icon: VideoDocumentaryIcon },
   { id: 'trending', icon: TrendingUpIcon },
 ];
@@ -38,7 +36,6 @@ export const BOTTOM_NAV_IDS: Array<{ id: SectionId; icon: Icons }> = [
   { id: 'hero', icon: FilmIcon },
   { id: 'movies', icon: FilmIcon },
   { id: 'series', icon: TvIcon },
-  { id: 'anime', icon: FilmIcon },
   { id: 'trending', icon: TrendingUpIcon },
 ];
 
@@ -46,7 +43,6 @@ export const CATEGORY_METAS: CategoryMeta[] = [
   { id: 'all', icon: FilmIcon, accent: 'violet' },
   { id: 'movie', icon: FilmIcon, accent: 'violet' },
   { id: 'series', icon: TvIcon, accent: 'blue' },
-  { id: 'anime', icon: FilmIcon, accent: 'orange' },
   { id: 'documentary', icon: VideoDocumentaryIcon, accent: 'green' },
 ];
 
@@ -59,7 +55,6 @@ export const SORT_OPTION_IDS: Array<{ id: SortOption; icon: Icons }> = [
 export const WEEKLY_SECTIONS_META: WeeklySectionMeta[] = [
   { key: 'movies', accent: 'violet', type: 'movie' },
   { key: 'series', accent: 'blue', type: 'series' },
-  { key: 'anime', accent: 'orange', type: 'anime' },
   { key: 'docs', accent: 'green', type: 'documentary' },
 ];
 
@@ -262,7 +257,7 @@ export const allMedia: Media[] = [
   {
     id: 14,
     title: 'Hollow Throne',
-    type: 'anime',
+    type: 'series',
     genres: ['Action', 'Fantasy', 'Shonen'],
     rating: 9.3,
     year: 2026,
@@ -279,7 +274,7 @@ export const allMedia: Media[] = [
   {
     id: 15,
     title: 'Void Architects',
-    type: 'anime',
+    type: 'series',
     genres: ['Sci-Fi', 'Mecha', 'Drama'],
     rating: 8.9,
     year: 2025,
@@ -294,7 +289,7 @@ export const allMedia: Media[] = [
   {
     id: 16,
     title: 'Midnight Shogun',
-    type: 'anime',
+    type: 'series',
     genres: ['Action', 'Historical', 'Supernatural'],
     rating: 8.5,
     year: 2026,
@@ -309,7 +304,7 @@ export const allMedia: Media[] = [
   {
     id: 17,
     title: 'Abyss Protocol',
-    type: 'anime',
+    type: 'series',
     genres: ['Psychological', 'Thriller', 'Mystery'],
     rating: 9.0,
     year: 2025,

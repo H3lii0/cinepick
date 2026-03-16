@@ -1,19 +1,23 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { ShuffleIcon } from '../../../../shared/icons/ui/shuffle';
 import { SparklesAnimationIcon } from '../../../../shared/icons/ui/sparkles-animation';
 import { HERO_FILTER_IDS, streamingBrandColors } from '../../../../constants/navigation.constants';
 import { Media, MediaFilter, MediaType } from '../../../../models/media.model';
 import { Language } from '../../../../services/language';
 import { Recommendation } from '../../../../services/recommendation/recommendation';
 import { TranslocoModule } from '@jsverse/transloco';
+import { StarIcon } from '../../../../shared/icons/ui/star';
+import { CalendarIcon } from "../../../../shared/icons/ui/calendar";
+import { PlusIcon } from '../../../../shared/icons/actions/plus';
 
 @Component({
   selector: 'app-hero',
   imports: [
-    ShuffleIcon,
     SparklesAnimationIcon,
     TranslocoModule,
-  ],
+    StarIcon,
+    CalendarIcon,
+    PlusIcon
+],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

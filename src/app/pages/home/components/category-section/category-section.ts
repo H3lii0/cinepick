@@ -1,3 +1,4 @@
+import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
@@ -9,7 +10,7 @@ import { HomeNavigationService } from '../../../../services/home-navigation.serv
 
 @Component({
   selector: 'app-category-section',
-  imports: [TranslocoModule],
+  imports: [NgComponentOutlet, TranslocoModule],
   templateUrl: './category-section.html',
   styleUrl: './category-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -69,9 +70,6 @@ export class CategorySection {
   }
 
   mediaTypeClass(type: MediaType): string {
-    if (type === 'anime') {
-      return 'chip-anime';
-    }
     if (type === 'series') {
       return 'chip-series';
     }

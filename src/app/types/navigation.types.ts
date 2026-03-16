@@ -9,7 +9,6 @@ export type SectionId =
   | 'trending'
   | 'movies'
   | 'series'
-  | 'anime'
   | 'documentary'
   | 'category';
 

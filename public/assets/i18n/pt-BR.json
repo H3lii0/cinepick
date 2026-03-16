@@ -2,7 +2,6 @@
   "nav": {
     "movies": "Filmes",
     "series": "Séries",
-    "anime": "Anime",
     "documentary": "Documentário",
     "documentaries": "Documentários",
     "trending": "Em Alta",
@@ -11,10 +10,10 @@
     "backHome": "Voltar para WatchReel"
   },
   "hero": {
-    "badge": "Motor de Descoberta",
+    "badge": "Descubra algo novo",
     "title1": "O que assistir",
     "title2": "hoje?",
-    "subtitle": "Deixa a gente escolher algo perfeito pra você.",
+    "subtitle": "Descubra filmes, séries e documentários perfeitos para você.",
     "cta": "Recomendação Aleatória",
     "loading": "Encontrando algo ótimo...",
     "error": "Não foi possível carregar a recomendação. Tente novamente.",
@@ -24,18 +23,15 @@
     "all": "Tudo",
     "movie": "Filmes",
     "series": "Séries",
-    "documentary": "Documentários",
-    "anime": "Anime"
+    "documentary": "Documentários"
   },
   "recCard": {
-    "trailer": "Trailer",
-    "tryAnother": "Tentar Outro",
+    "viewDetails": "Ver Detalhes",
     "on": "Em:"
   },
   "mediaType": {
     "movie": "Filme",
     "series": "Série",
-    "anime": "Anime",
     "documentary": "Documentário"
   },
   "weekly": {
@@ -44,7 +40,6 @@
     "newBadge": "NOVO",
     "movies": { "title": "Filmes", "subtitle": "Nos cinemas e streaming essa semana" },
     "series": { "title": "Séries", "subtitle": "Novos episódios e temporadas disponíveis" },
-    "anime": { "title": "Anime", "subtitle": "Últimos lançamentos e novas temporadas" },
     "docs": { "title": "Documentários", "subtitle": "Docs imperdíveis disponíveis essa semana" }
   },
   "trending": {
@@ -88,7 +83,16 @@
     "home": "Início",
     "movies": "Filmes",
     "series": "Séries",
-    "anime": "Anime",
     "trending": "Em Alta"
+  },
+  "navbar": {
+    "mainNavigationAria": "Navegação principal",
+    "langToggleToPt": "PT",
+    "langToggleToEn": "EN",
+    "searchTitlesAria": "Buscar títulos",
+    "searchPlaceholder": "Buscar títulos...",
+    "openSearchAria": "Abrir busca",
+    "notificationsAria": "Notificações",
+    "profilesAria": "Perfis"
   }
 }

@@ -1,7 +1,9 @@
 <section id="section-category" class="category-section frame">
 	<header class="section-header category-header">
 		<div class="section-title-wrap">
-			<span class="title-icon" [attr.data-accent]="activeCategoryMeta().accent"></span>
+			<span class="title-icon" [attr.data-accent]="activeCategoryMeta().accent">
+        <ng-container *ngComponentOutlet="activeCategoryMeta().icon; inputs: { size: 18 }"></ng-container>
+      </span>
 			<div>
 				<h2 class="section-title">{{ 'category.sectionTitle' | transloco }}</h2>
 				<p class="section-subtitle">{{ 'category.sectionSubtitle' | transloco }}</p>
@@ -19,6 +21,7 @@
 					[class.category-tab-active]="activeCategory() === cat.id"
 					(click)="selectCategory(cat.id)"
 				>
+					<ng-container *ngComponentOutlet="cat.icon; inputs: { size: 13 }"></ng-container>
 					{{ (cat.id === 'all' ? 'category.allContent' : 'filters.' + cat.id) | transloco }}
 				</button>
 			}

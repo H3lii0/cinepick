@@ -38,7 +38,6 @@ const TMDB_GENRE_LABELS: Record<number, string> = {
 const FALLBACK_STREAMING_OPTIONS: Record<MediaType, string[]> = {
   movie:       ['Netflix', 'Prime Video', 'Apple TV+'],
   series:      ['HBO Max', 'Netflix', 'Prime Video'],
-  anime:       ['Crunchyroll', 'Netflix', 'Prime Video'],
   documentary: ['Disney+', 'Netflix', 'Apple TV+'],
 };
 
@@ -74,10 +73,8 @@ export class TmdbMediaMapper {
   }
 
   private static resolveType(item: TmdbItem, filter: MediaFilter): MediaType {
-    if (filter === 'anime')       return 'anime';
     if (filter === 'documentary') return 'documentary';
     if (item.genre_ids.includes(TMDB_DOCUMENTARY_GENRE_ID)) return 'documentary';
-    if (item.genre_ids.includes(TMDB_ANIME_GENRE_ID) && item.media_type === 'tv') return 'anime';
     return item.media_type === 'movie' ? 'movie' : 'series';
   }
 
@@ -94,7 +91,6 @@ export class TmdbMediaMapper {
 
     const fallback: Record<MediaType, string> = {
       series:      'TV Series',
-      anime:       'Animação',
       documentary: 'Documentary',
       movie:       'Movie',
     };
