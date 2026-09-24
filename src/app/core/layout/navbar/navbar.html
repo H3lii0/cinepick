@@ -24,38 +24,8 @@
     </nav> -->
 
     <div class="top-tools">
-      <!-- <button type="button" class="tool-btn" (click)="toggleLang()">
+      <button type="button" class="tool-btn" (click)="toggleLang()" aria-label="Change language">
         {{ langSvc.isEnglish() ? 'PT' : 'EN' }}
-      </button> -->
-      @if (searchOpenBar()) {
-          <label class="search-pill" aria-label="Search titles">
-            <app-icon-search [size]="16"></app-icon-search>
-            <input
-              type="text"
-              [value]="searchValue()"
-              placeholder="Search titles..."
-            />
-            <button type="button" class="tool-btn" (click)="closeSearchBar()">
-              <app-close-icon [size]="16"></app-close-icon>
-            </button>
-          </label>
-      } @else {
-        <button
-        type="button"
-        class="tool-btn"
-        (click)="toggleSearchBar()"
-        aria-label="Open search">
-          <app-icon-search [size]="16"></app-icon-search>
-        </button>
-      }
-
-      <button
-        type="button"
-        class="tool-btn tool-btn-notification" aria-label="Notifications"
-        >
-      </button>
-      <button type="button" class="avatar" aria-label="Profiles">
-          <app-user-icon [size]="16"></app-user-icon>
       </button>
     </div>
   </div>
