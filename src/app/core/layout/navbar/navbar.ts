@@ -1,23 +1,15 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { PlayerCircle } from '../../../shared/icons/actions/player-circle';
-import { IconSearch } from '../../../shared/icons/actions/search';
-import { CloseIcon } from '../../../shared/icons/actions/close';
-import { UserIcon } from '../../../shared/icons/ui/user';
+import { Language } from '../../../services/language';
 
 @Component({
   selector: 'app-navbar',
-  imports: [
-    PlayerCircle,
-    IconSearch,
-    CloseIcon,
-    UserIcon
-  ],
+  imports: [PlayerCircle],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
 export class Navbar {
-  readonly searchValue = signal('');
-  readonly searchOpenBar = signal(false);
+  readonly langSvc = inject(Language);
   readonly navbarCompact = signal(false);
   private readonly cleanupFns: Array<() => void> = [];
 
@@ -39,15 +31,7 @@ export class Navbar {
   }
 
 
-  toggleSearchBar() {
-    if (this.searchOpenBar()) {
-      this.searchValue.set('');
-    }
-    this.searchOpenBar.update((open) => !open);
-  }
-
-  closeSearchBar(): void {
-    this.searchOpenBar.set(false);
-    this.searchValue.set('');
+  toggleLang(): void {
+    this.langSvc.toggle();
   }
 }
