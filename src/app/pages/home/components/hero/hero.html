@@ -85,17 +85,7 @@
 
             <p>{{ rec.description }}</p>
 
-            <div class="stream-row">
-              <small>{{ 'recCard.on' | transloco }}</small>
-              @for (stream of rec.streaming.slice(0, 3); track stream) {
-                <span [style.background-color]="streamingColor(stream)">{{ stream }}</span>
-              }
-            </div>
-
             <div class="rec-actions">
-              <button type="button" class="action-primary">
-                {{ 'recCard.trailer' | transloco }}
-              </button>
               <button
                 type="button"
                 class="action-ghost"

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ShuffleIcon } from '../../../../shared/icons/ui/shuffle';
 import { SparklesAnimationIcon } from '../../../../shared/icons/ui/sparkles-animation';
-import { HERO_FILTER_IDS, streamingBrandColors } from '../../../../constants/navigation.constants';
+import { HERO_FILTER_IDS } from '../../../../constants/navigation.constants';
 import { Media, MediaFilter, MediaType } from '../../../../models/media.model';
 import { Language } from '../../../../services/language';
 import { Recommendation } from '../../../../services/recommendation/recommendation';
@@ -65,7 +65,4 @@ export class Hero {
     return `mediaType.${type}`;
   }
 
-  streamingColor(platform: string): string {
-    return streamingBrandColors[platform] ?? '#4b5563';
-  }
 }

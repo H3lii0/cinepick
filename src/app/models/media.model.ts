@@ -11,6 +11,5 @@ export interface Media {
   year: number;
   poster: string;
   backdrop: string;
-  streaming: string[];
   description: string;
 }
