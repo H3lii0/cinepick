@@ -123,14 +123,14 @@
               <p>{{ rec.description }}</p>
 
               <div class="rec-actions">
-                <button
+                <!-- <button
                   type="button"
                   class="action-ghost"
                   [disabled]="isLoading()"
                   (click)="handleRecommend(rec.id)"
                 >
                   {{ 'recCard.tryAnother' | transloco }}
-                </button>
+                </button> -->
                 @if (rec.trailerUrl) {
                   <a
                     class="action-ghost trailer-link"
