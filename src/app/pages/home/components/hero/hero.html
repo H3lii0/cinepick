@@ -104,6 +104,22 @@
                 }
               </div>
 
+              @if (rec.providers.length > 0) {
+                <div class="watch-row">
+                  <span class="watch-label">{{ 'recCard.availableOn' | transloco }}</span>
+                  <div class="provider-list">
+                    @for (provider of rec.providers; track provider) {
+                      <span class="provider-chip">{{ provider }}</span>
+                    }
+                  </div>
+                  @if (rec.watchLink) {
+                    <a class="watch-link" [href]="rec.watchLink" target="_blank" rel="noopener noreferrer">
+                      {{ 'recCard.whereToWatch' | transloco }}
+                    </a>
+                  }
+                </div>
+              }
+
               <p>{{ rec.description }}</p>
 
               <div class="rec-actions">
@@ -115,6 +131,16 @@
                 >
                   {{ 'recCard.tryAnother' | transloco }}
                 </button>
+                @if (rec.trailerUrl) {
+                  <a
+                    class="action-ghost trailer-link"
+                    [href]="rec.trailerUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {{ 'recCard.trailer' | transloco }}
+                  </a>
+                }
               </div>
             </div>
           </div>

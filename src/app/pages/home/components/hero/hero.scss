@@ -289,6 +289,47 @@
   padding: 0.22rem 0.55rem;
 }
 
+.watch-row {
+  margin-top: 0.72rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.7rem;
+}
+
+.watch-label {
+  flex-basis: 100%;
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 0.68rem;
+}
+
+.provider-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.provider-chip {
+  padding: 0.2rem 0.48rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.watch-link {
+  color: #c4b5fd;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.watch-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
 .rec-info p {
   margin: 0.7rem 0 0;
   color: rgba(255, 255, 255, 0.65);
@@ -325,6 +366,11 @@
 .action-ghost:disabled {
   opacity: 0.55;
   cursor: not-allowed;
+}
+
+.trailer-link {
+  color: #f5d0fe;
+  text-decoration: none;
 }
 
 .stage-1,

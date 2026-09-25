@@ -14,6 +14,31 @@ export interface TmdbItem {
   genre_ids: number[];
   original_language: string;
   adult: boolean;
+  videos?: TmdbVideo[];
+  watch_providers?: TmdbWatchProviders | null;
+}
+
+export interface TmdbVideo {
+  key: string;
+  name: string;
+  site: string;
+  type: string;
+  official?: boolean;
+}
+
+export interface TmdbWatchProvider {
+  provider_id: number;
+  provider_name: string;
+  logo_path: string | null;
+}
+
+export interface TmdbWatchProviders {
+  link?: string;
+  flatrate?: TmdbWatchProvider[];
+  free?: TmdbWatchProvider[];
+  ads?: TmdbWatchProvider[];
+  rent?: TmdbWatchProvider[];
+  buy?: TmdbWatchProvider[];
 }
 
 export interface TmdbResponse {

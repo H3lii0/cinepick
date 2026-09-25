@@ -62,6 +62,9 @@ export class TmdbMediaMapper {
                      : backdropPath,
       backdrop:    backdropPath,
       description: item.overview || 'No synopsis available.',
+      providers:   TmdbMediaMapper.mapProviders(item),
+      watchLink:   item.watch_providers?.link,
+      trailerUrl:  TmdbMediaMapper.mapTrailer(item),
     };
   }
 
@@ -97,5 +100,23 @@ export class TmdbMediaMapper {
   private static extractYear(rawDate?: string): number {
     const year = Number(rawDate?.slice(0, 4));
     return Number.isFinite(year) && year > 0 ? year : new Date().getFullYear();
+  }
+
+  private static mapProviders(item: TmdbItem): string[] {
+    const providers = [
+      ...(item.watch_providers?.flatrate ?? []),
+      ...(item.watch_providers?.free ?? []),
+      ...(item.watch_providers?.ads ?? []),
+    ];
+
+    return Array.from(new Map(providers.map(provider => [provider.provider_id, provider.provider_name])).values());
+  }
+
+  private static mapTrailer(item: TmdbItem): string | undefined {
+    const trailer = (item.videos ?? []).find(video =>
+      video.site === 'YouTube' && video.type === 'Trailer',
+    );
+
+    return trailer ? `https://www.youtube.com/watch?v=${trailer.key}` : undefined;
   }
 }

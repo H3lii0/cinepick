@@ -16,7 +16,10 @@
     "anime": "Anime"
   },
   "recCard": {
-    "tryAnother": "Try Another"
+    "tryAnother": "Try Another",
+    "availableOn": "Available to watch on",
+    "whereToWatch": "Where to watch",
+    "trailer": "Watch trailer"
   },
   "mediaType": {
     "movie": "Movie",

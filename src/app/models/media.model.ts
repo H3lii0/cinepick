@@ -12,4 +12,7 @@ export interface Media {
   poster: string;
   backdrop: string;
   description: string;
+  providers: string[];
+  watchLink?: string;
+  trailerUrl?: string;
 }

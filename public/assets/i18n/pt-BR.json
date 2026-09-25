@@ -16,7 +16,10 @@
     "anime": "Anime"
   },
   "recCard": {
-    "tryAnother": "Tentar Outro"
+    "tryAnother": "Tentar Outro",
+    "availableOn": "Disponível para assistir em",
+    "whereToWatch": "Onde assistir",
+    "trailer": "Ver trailer"
   },
   "mediaType": {
     "movie": "Filme",

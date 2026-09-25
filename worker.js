@@ -60,6 +60,45 @@ async function fetchTmdb(request, token) {
   };
 }
 
+async function mediaDetails(request, env) {
+  if (!env.TMDB_BEARER_TOKEN) {
+    return json({ error: 'TMDB_BEARER_TOKEN is not configured.' }, 500);
+  }
+
+  const url = new URL(request.url);
+  const mediaType = url.searchParams.get('media_type');
+  const id = url.searchParams.get('id');
+  const language = url.searchParams.get('language') === 'en-US' ? 'en-US' : 'pt-BR';
+
+  if (!['movie', 'tv'].includes(mediaType) || !/^\d+$/.test(id ?? '')) {
+    return json({ error: 'Invalid media details request.' }, 400);
+  }
+
+  const params = new URLSearchParams({
+    append_to_response: 'videos,watch/providers',
+    include_video_language: `${language},en-US,null`,
+    language,
+    watch_region: 'BR',
+  });
+
+  const response = await fetch(`${TMDB_BASE_URL}/${mediaType}/${id}?${params}`, {
+    headers: { Authorization: `Bearer ${env.TMDB_BEARER_TOKEN}` },
+  });
+
+  if (!response.ok) {
+    return json({ error: response.status === 401 ? 'TMDB token rejected.' : `TMDB error ${response.status}.` }, 502);
+  }
+
+  const body = await response.json();
+  return json({
+    ...body,
+    media_type: mediaType,
+    genre_ids: (body.genres ?? []).map((genre) => genre.id),
+    videos: body.videos?.results ?? [],
+    watch_providers: body['watch/providers']?.results?.BR ?? null,
+  });
+}
+
 async function recommendation(request, env) {
   if (!env.TMDB_BEARER_TOKEN) {
     return json({ error: 'TMDB_BEARER_TOKEN is not configured.' }, 500);
@@ -95,6 +134,10 @@ export default {
 
     if (url.pathname === '/api/recommendation' && request.method === 'GET') {
       return recommendation(request, env);
+    }
+
+    if (url.pathname === '/api/media-details' && request.method === 'GET') {
+      return mediaDetails(request, env);
     }
 
     return env.ASSETS.fetch(request);

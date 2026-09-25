@@ -41,7 +41,12 @@ export class Recommendation {
         throw new Error('Nenhum resultado encontrado. Tente novamente.');
       }
 
-      const item = valid[Math.floor(Math.random() * valid.length)];
+      const selected = valid[Math.floor(Math.random() * valid.length)];
+      const item = await this.client.fetchDetails(
+        selected.media_type,
+        selected.id,
+        language,
+      );
       return TmdbMediaMapper.toMedia(item, request.filter, request.fallbackBackdrop);
     } finally {
       this.loading.set(false);

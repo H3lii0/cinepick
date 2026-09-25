@@ -5,6 +5,7 @@ import { TmdbItem } from '../../../models/tmdb.model';
 import { MediaFilter } from '../../../models/media.model';
 
 const RECOMMENDATION_API = '/api/recommendation';
+const MEDIA_DETAILS_API = '/api/media-details';
 
 export type RecommendationLanguage = 'pt-BR' | 'en-US';
 
@@ -24,6 +25,22 @@ export class TmdbClient {
       return await firstValueFrom(
         this.http.get<TmdbItem[]>(RECOMMENDATION_API, {
           params: { filter, language },
+        }),
+      );
+    } catch (error) {
+      throw new Error(this.resolveHttpError(error));
+    }
+  }
+
+  async fetchDetails(
+    mediaType: 'movie' | 'tv',
+    id: number,
+    language: RecommendationLanguage,
+  ): Promise<TmdbItem> {
+    try {
+      return await firstValueFrom(
+        this.http.get<TmdbItem>(MEDIA_DETAILS_API, {
+          params: { media_type: mediaType, id, language },
         }),
       );
     } catch (error) {
