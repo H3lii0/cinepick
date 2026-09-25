@@ -22,16 +22,16 @@
       <p class="hero-subtitle stage-3">{{ 'hero.subtitle' | transloco }}</p>
 
       <div class="hero-filters stage-4">
-          @for (filterId of heroFilterIds; track filterId) {
-            <button
-              type="button"
-              class="pill-btn"
-              [class.pill-btn-active]="selectedFilter() === filterId"
-              (click)="onHeroFilterSelect(filterId)"
-            >
-              {{ 'filters.' + filterId | transloco }}
-            </button>
-          }
+        @for (filterId of heroFilterIds; track filterId) {
+          <button
+            type="button"
+            class="pill-btn"
+            [class.pill-btn-active]="selectedFilter() === filterId"
+            (click)="onHeroFilterSelect(filterId)"
+          >
+            {{ 'filters.' + filterId | transloco }}
+          </button>
+        }
       </div>
 
       <button
@@ -44,11 +44,11 @@
           [size]="18"
           [svgStyle]="isLoading() ? 'sparkles-draw' : ''"
         />
-          @if (isLoading()) {
-            Finding something great...
-          } @else {
-            Random Recommendation
-          }
+        @if (isLoading()) {
+          Finding something great...
+        } @else {
+          Random Recommendation
+        }
       </button>
 
       @if (recommendationError()) {
@@ -57,7 +57,7 @@
     </div>
 
     @if (recommendation(); as rec) {
-     <article class="rec-card">
+      <article class="rec-card">
         <div class="rec-card-bg">
           <img [src]="rec.backdrop" alt="" />
         </div>
@@ -65,10 +65,7 @@
         <div class="rec-card-body">
           <div class="rec-poster-wrap">
             <img [src]="rec.poster" [alt]="rec.title" class="rec-poster" />
-            <span class="rec-rating-chip">
-
-              {{ rec.rating }}
-            </span>
+            <span class="rec-rating-chip">{{ rec.rating }}</span>
           </div>
 
           <div class="rec-info">
@@ -76,26 +73,8 @@
             <h2>{{ rec.title }}</h2>
 
             <div class="meta-row">
-              <span>
-
-                {{ rec.year }}
-              </span>
-              @if (rec.duration) {
-                <span>
-
-                  {{ rec.duration }}
-                </span>
-              }
-              @if (rec.seasons) {
-                <span>
-
-                  {{ rec.seasons }}S · {{ rec.episodes }}ep
-                </span>
-              }
-              <span class="rating-value">
-
-                {{ rec.rating }}/10
-              </span>
+              <span>{{ rec.year }}</span>
+              <span class="rating-value">{{ rec.rating }}/10</span>
             </div>
 
             <div class="genre-row">
@@ -106,7 +85,6 @@
 
             <p>{{ rec.description }}</p>
 
-            <!--FALTA VER COMO IREI IMPLEMENTAR OS BOTÕES DE STREAMING-->
             <div class="stream-row">
               <small>{{ 'recCard.on' | transloco }}</small>
               @for (stream of rec.streaming.slice(0, 3); track stream) {
@@ -115,9 +93,7 @@
             </div>
 
             <div class="rec-actions">
-              <!--vai ser um botao de ver mais-->
               <button type="button" class="action-primary">
-
                 {{ 'recCard.trailer' | transloco }}
               </button>
               <button
