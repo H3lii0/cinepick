@@ -40,6 +40,7 @@ testem.log
 __screenshots__/
 
 # Cloudflare local secrets
+.wrangler/
 .dev.vars*
 !.dev.vars.example
 .env*
