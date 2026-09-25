@@ -1,15 +1,4 @@
 {
-  "nav": {
-    "movies": "Movies",
-    "series": "TV Series",
-    "anime": "Anime",
-    "documentary": "Documentary",
-    "documentaries": "Documentaries",
-    "trending": "Trending",
-    "tmdbLive": "TMDB Live",
-    "recommendation": "Recommendation",
-    "backHome": "Back to WatchReel Home"
-  },
   "hero": {
     "badge": "Smart Discovery Engine",
     "title1": "What should I",
@@ -17,8 +6,7 @@
     "subtitle": "Let us choose something perfect for you.",
     "cta": "Random Recommendation",
     "loading": "Finding something great...",
-    "error": "Could not load recommendation. Try again.",
-    "errorNoMatch": "No titles found for this filter. Try \"All\" or another filter."
+    "error": "Could not load recommendation. Try again."
   },
   "filters": {
     "all": "All",
@@ -28,67 +16,12 @@
     "anime": "Anime"
   },
   "recCard": {
-    "trailer": "Trailer",
-    "tryAnother": "Try Another",
-    "on": "On:"
+    "tryAnother": "Try Another"
   },
   "mediaType": {
     "movie": "Movie",
     "series": "TV Series",
     "anime": "Anime",
     "documentary": "Documentary"
-  },
-  "weekly": {
-    "sectionTitle": "New This Week",
-    "sectionSubtitle": "Fresh releases dropping this week across all categories",
-    "newBadge": "NEW",
-    "movies": { "title": "Movies", "subtitle": "In theaters and streaming this week" },
-    "series": { "title": "TV Series", "subtitle": "New episodes and seasons available now" },
-    "anime": { "title": "Anime", "subtitle": "Latest anime releases and new seasons" },
-    "docs": { "title": "Documentaries", "subtitle": "Eye-opening docs available this week" }
-  },
-  "trending": {
-    "sectionTitle": "Trending This Week",
-    "sectionSubtitle": "What everyone is watching right now",
-    "badge": "TRENDING",
-    "topPicks": "Top Picks"
-  },
-  "category": {
-    "sectionTitle": "Browse by Category",
-    "sectionSubtitle": "Discover content tailored to your taste",
-    "allContent": "All Content",
-    "sortLabel": "Sort:",
-    "showing": "Showing {{ count }} titles",
-    "inLabel": "in",
-    "sortedBy": "Sorted by"
-  },
-  "sort": {
-    "popularity": "Popularity",
-    "release": "Release Date",
-    "rating": "Rating"
-  },
-  "card": {
-    "trailer": "Trailer",
-    "watchlist": "Watchlist",
-    "list": "List"
-  },
-  "footer": {
-    "tagline": "Your cinematic discovery engine",
-    "about": "About",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service",
-    "contact": "Contact",
-    "help": "Help Center",
-    "copyright": "© 2026 WatchReel. All content displayed is for discovery purposes only.",
-    "disclaimer": "Streaming data is illustrative",
-    "poweredBy": "Powered by WatchReel AI"
-  },
-  "bottomNav": {
-    "hero": "Home",
-    "home": "Home",
-    "movies": "Movies",
-    "series": "Series",
-    "anime": "Anime",
-    "trending": "Trending"
   }
 }

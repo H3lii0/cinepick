@@ -45,9 +45,9 @@
           [svgStyle]="isLoading() ? 'sparkles-draw' : ''"
         />
         @if (isLoading()) {
-          Finding something great...
+          {{ 'hero.loading' | transloco }}
         } @else {
-          Random Recommendation
+          {{ 'hero.cta' | transloco }}
         }
       </button>
 
