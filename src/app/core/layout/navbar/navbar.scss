@@ -61,33 +61,6 @@
 	color: transparent;
 }
 
-.desktop-links {
-	display: none;
-	margin-left: 1.2rem;
-	gap: 0.3rem;
-}
-
-.desktop-link {
-	border: 0;
-	cursor: pointer;
-	padding: 0.45rem 0.8rem;
-	border-radius: 0.65rem;
-	color: rgba(255, 255, 255, 0.62);
-	background: transparent;
-	font-size: 0.86rem;
-	transition: 180ms ease;
-}
-
-.desktop-link:hover {
-	color: white;
-	background: rgba(255, 255, 255, 0.08);
-}
-
-.desktop-link-active {
-	color: white;
-	background: rgba(255, 255, 255, 0.14);
-}
-
 .top-tools {
 	margin-left: auto;
 	display: flex;
@@ -112,55 +85,4 @@
 .tool-btn:hover {
 	color: white;
 	background: rgba(255, 255, 255, 0.1);
-}
-
-.tool-btn-notification::after {
-	content: '';
-	width: 0.4rem;
-	height: 0.4rem;
-	background: var(--violet);
-	border-radius: 50%;
-	position: absolute;
-	margin-top: -0.8rem;
-	margin-left: 0.8rem;
-}
-
-.search-pill {
-	width: min(20rem, 42vw);
-	min-height: 2.2rem;
-	border-radius: 999px;
-	display: inline-flex;
-	align-items: center;
-	gap: 0.4rem;
-	border: 1px solid rgba(255, 255, 255, 0.24);
-	background: rgba(255, 255, 255, 0.08);
-	padding: 0 0.45rem 0 0.75rem;
-	color: rgba(255, 255, 255, 0.55);
-}
-
-.search-pill input {
-	flex: 1;
-	min-width: 0;
-	border: 0;
-	outline: 0;
-	background: transparent;
-	color: white;
-	font-size: 0.85rem;
-}
-
-.search-pill input::placeholder {
-	color: rgba(255, 255, 255, 0.45);
-}
-
-.avatar {
-	width: 2rem;
-	height: 2rem;
-	border-radius: 50%;
-	border: 0;
-	color: white;
-	cursor: pointer;
-	background: linear-gradient(135deg, var(--violet), var(--fuchsia));
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
 }

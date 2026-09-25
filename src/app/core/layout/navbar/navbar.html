@@ -10,19 +10,6 @@
       </span>
     </button>
 
-    <!-- <nav class="desktop-links" aria-label="Main navigation">
-      @for (link of navLinkIds; track link.id) {
-        <button
-          type="button"
-          class="desktop-link"
-          [class.desktop-link-active]="isNavActive(link.id)"
-          (click)="scrollTo(link.id)"
-        >
-          {{ 'nav.' + link.id | transloco }}
-        </button>
-      }
-    </nav> -->
-
     <div class="top-tools">
       <button type="button" class="tool-btn" (click)="toggleLang()" aria-label="Change language">
         {{ langSvc.isEnglish() ? 'PT' : 'EN' }}
