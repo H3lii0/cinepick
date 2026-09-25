@@ -10,7 +10,7 @@
   <div class="hero-content frame">
     <div class="hero-copy">
       <p class="hero-badge stage-1">
-        <app-shuffle-icon [size]="12"></app-shuffle-icon>
+        <app-lightning-icon [size]="12"></app-lightning-icon>
         {{ 'hero.badge' | transloco }}
       </p>
 
@@ -34,22 +34,24 @@
         }
       </div>
 
-      <button
-        type="button"
-        class="recommend-btn stage-5"
-        [disabled]="isLoading()"
-        (click)="handleRecommend()"
-      >
-        <app-sparkles-animation-icon
-          [size]="18"
-          [svgStyle]="isLoading() ? 'sparkles-draw' : ''"
-        />
-        @if (isLoading()) {
-          {{ 'hero.loading' | transloco }}
-        } @else {
-          {{ 'hero.cta' | transloco }}
-        }
-      </button>
+      <div class="hero-recommend-btn">
+        <button
+          type="button"
+          class="recommend-btn stage-5"
+          [disabled]="isLoading()"
+          (click)="handleRecommend()"
+        >
+          <app-sparkles-animation-icon
+            [size]="18"
+            [svgStyle]="isLoading() ? 'sparkles-draw' : ''"
+          />
+          @if (isLoading()) {
+            {{ 'hero.loading' | transloco }}
+          } @else {
+            {{ 'hero.cta' | transloco }}
+          }
+        </button>
+      </div>
 
       @if (recommendationError()) {
         <p class="recommend-error">{{ recommendationError()! | transloco }}</p>

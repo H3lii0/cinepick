@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { ShuffleIcon } from '../../../../shared/icons/ui/shuffle';
+import { LightningIcon } from '../../../../shared/icons/ui/lightning';
 import { SparklesAnimationIcon } from '../../../../shared/icons/ui/sparkles-animation';
 import { HERO_FILTER_IDS } from '../../../../constants/navigation.constants';
 import { Media, MediaFilter, MediaType } from '../../../../models/media.model';
@@ -10,7 +10,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'app-hero',
   imports: [
-    ShuffleIcon,
+    LightningIcon,
     SparklesAnimationIcon,
     TranslocoModule,
   ],

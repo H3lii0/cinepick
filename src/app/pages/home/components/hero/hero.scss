@@ -380,16 +380,17 @@
     padding-bottom: 5rem;
   }
 
+  .hero-recommend-btn {
+    display: flex;
+    justify-content: center;
+  }
+
   .rec-actions {
     flex-wrap: wrap;
   }
 }
 
 @media (max-width: 560px) {
-  .frame {
-    width: calc(100% - 1rem);
-  }
-
   .hero-filters {
     flex-wrap: nowrap;
     overflow-x: auto;
