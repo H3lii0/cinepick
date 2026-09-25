@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { LightningIcon } from '../../../../shared/icons/ui/lightning';
+import { CloseIcon } from '../../../../shared/icons/ui/close';
+import { StarIcon } from '../../../../shared/icons/ui/star';
 import { SparklesAnimationIcon } from '../../../../shared/icons/ui/sparkles-animation';
 import { HERO_FILTER_IDS } from '../../../../constants/navigation.constants';
 import { Media, MediaFilter, MediaType } from '../../../../models/media.model';
@@ -11,6 +13,8 @@ import { TranslocoModule } from '@jsverse/transloco';
   selector: 'app-hero',
   imports: [
     LightningIcon,
+    CloseIcon,
+    StarIcon,
     SparklesAnimationIcon,
     TranslocoModule,
   ],
@@ -33,7 +37,13 @@ export class Hero {
   onHeroFilterSelect(filter: MediaFilter): void {
     this.selectedFilter.set(filter);
     this.recommendation.set(null);
+    this.setModalScrollLock(false);
     this.recommendationError.set(null);
+  }
+
+  dismissRecommendation(): void {
+    this.recommendation.set(null);
+    this.setModalScrollLock(false);
   }
 
   async handleRecommend(exclude?: number): Promise<void> {
@@ -53,6 +63,7 @@ export class Hero {
         language: this.langSvc.lang() === 'pt-BR' ? 'pt-BR' : 'en-US',
       });
       this.recommendation.set(recommendation);
+      this.setModalScrollLock(true);
     } catch (error) {
       this.recommendationError.set('hero.error');
     } finally {
@@ -61,8 +72,17 @@ export class Hero {
     }
   }
 
+  ngOnDestroy(): void {
+    this.setModalScrollLock(false);
+  }
+
   mediaTypeLabel(type: MediaType): string {
     return `mediaType.${type}`;
+  }
+
+  private setModalScrollLock(locked: boolean): void {
+    const isMobileOrTablet = window.matchMedia('(max-width: 1099px)').matches;
+    document.body.classList.toggle('modal-open', locked && isMobileOrTablet);
   }
 
 }
