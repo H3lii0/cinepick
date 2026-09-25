@@ -59,47 +59,67 @@
     </div>
 
     @if (recommendation(); as rec) {
-      <article class="rec-card">
-        <div class="rec-card-bg">
-          <img [src]="rec.backdrop" alt="" />
-        </div>
+      <div class="rec-modal" role="dialog" aria-modal="true" [attr.aria-label]="rec.title">
+        <button
+          type="button"
+          class="rec-modal-backdrop"
+          aria-label="Fechar recomendação"
+          (click)="dismissRecommendation()"
+        ></button>
 
-        <div class="rec-card-body">
-          <div class="rec-poster-wrap">
-            <img [src]="rec.poster" [alt]="rec.title" class="rec-poster" />
-            <span class="rec-rating-chip">{{ rec.rating }}</span>
+        <article class="rec-card">
+          <div class="rec-card-bg">
+            <img [src]="rec.backdrop" alt="" />
           </div>
 
-          <div class="rec-info">
-            <span class="type-chip">{{ mediaTypeLabel(rec.type) | transloco }}</span>
-            <h2>{{ rec.title }}</h2>
+          <button
+            type="button"
+            class="rec-modal-close"
+            aria-label="Fechar recomendação"
+            (click)="dismissRecommendation()"
+          >
+            <app-close-icon [size]="16"></app-close-icon>
+          </button>
 
-            <div class="meta-row">
-              <span>{{ rec.year }}</span>
-              <span class="rating-value">{{ rec.rating }}/10</span>
+          <div class="rec-card-body">
+            <div class="rec-poster-wrap">
+              <img [src]="rec.poster" [alt]="rec.title" class="rec-poster" />
             </div>
 
-            <div class="genre-row">
-              @for (genre of rec.genres.slice(0, 3); track genre) {
-                <span>{{ genre }}</span>
-              }
-            </div>
+            <div class="rec-info">
+              <span class="type-chip">{{ mediaTypeLabel(rec.type) | transloco }}</span>
+              <h2>{{ rec.title }}</h2>
 
-            <p>{{ rec.description }}</p>
+              <div class="meta-row">
+                <span>{{ rec.year }}</span>
+                <span class="rating-value">
+                  <app-star-icon [size]="12"></app-star-icon>
+                  {{ rec.rating }}/10
+                </span>
+              </div>
 
-            <div class="rec-actions">
-              <button
-                type="button"
-                class="action-ghost"
-                [disabled]="isLoading()"
-                (click)="handleRecommend(rec.id)"
-              >
-                {{ 'recCard.tryAnother' | transloco }}
-              </button>
+              <div class="genre-row">
+                @for (genre of rec.genres.slice(0, 3); track genre) {
+                  <span>{{ genre }}</span>
+                }
+              </div>
+
+              <p>{{ rec.description }}</p>
+
+              <div class="rec-actions">
+                <button
+                  type="button"
+                  class="action-ghost"
+                  [disabled]="isLoading()"
+                  (click)="handleRecommend(rec.id)"
+                >
+                  {{ 'recCard.tryAnother' | transloco }}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     }
   </div>
 </section>

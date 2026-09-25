@@ -127,7 +127,6 @@
 
 .pill-btn:hover {
   color: white;
-  background: rgba(255, 255, 255, 0.14);
 }
 
 .pill-btn-active {
@@ -183,6 +182,15 @@
   animation: card-in 380ms ease;
 }
 
+.rec-modal {
+  display: contents;
+}
+
+.rec-modal-backdrop,
+.rec-modal-close {
+  display: none;
+}
+
 .rec-card-bg {
   position: absolute;
   inset: 0;
@@ -224,20 +232,6 @@
   object-fit: cover;
   border-radius: 0.95rem;
   box-shadow: 0 16px 28px rgba(0, 0, 0, 0.48);
-}
-
-.rec-rating-chip {
-  position: absolute;
-  top: 0.48rem;
-  right: 0.48rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.2rem;
-  background: rgba(0, 0, 0, 0.72);
-  border-radius: 0.5rem;
-  font-weight: 700;
-  font-size: 0.66rem;
-  padding: 0.2rem 0.35rem;
 }
 
 .rec-info {
@@ -328,10 +322,6 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-.action-ghost:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.16);
-}
-
 .action-ghost:disabled {
   opacity: 0.55;
   cursor: not-allowed;
@@ -374,9 +364,88 @@
   }
 }
 
+@media (min-width: 1100px) {
+  .hero-content {
+    display: grid;
+    grid-template-columns: minmax(0, 41rem) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 6rem);
+  }
+
+  .rec-card {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 1099px) {
+  .hero-section {
+    align-items: flex-start;
+  }
+
+  .hero-content {
+    padding-top: 6.5rem;
+  }
+
+  .rec-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(5, 5, 10, 0.72);
+    backdrop-filter: blur(8px);
+  }
+
+  .rec-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: default;
+  }
+
+  .rec-modal .rec-card {
+    z-index: 1;
+    width: min(42rem, 100%);
+    max-height: calc(100svh - 2rem);
+    margin: 0;
+  }
+
+  .rec-modal-close {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    z-index: 2;
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    color: white;
+    background: rgba(10, 10, 15, 0.68);
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .rec-modal-close:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+}
+
 @media (max-width: 739px) {
   .hero-content {
-    padding-top: 5.5rem;
+    padding-top: 6.5rem;
     padding-bottom: 5rem;
   }
 
@@ -392,13 +461,16 @@
 
 @media (max-width: 560px) {
   .hero-filters {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 0.2rem;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    overflow: visible;
+    padding-bottom: 0;
   }
 
   .pill-btn {
     flex-shrink: 0;
+    padding-inline: 0.78rem;
+    font-size: 0.8rem;
   }
 
   .rec-card-body {
