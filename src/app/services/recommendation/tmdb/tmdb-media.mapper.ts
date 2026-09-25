@@ -35,13 +35,6 @@ const TMDB_GENRE_LABELS: Record<number, string> = {
   10768: 'War & Politics',
 };
 
-const FALLBACK_STREAMING_OPTIONS: Record<MediaType, string[]> = {
-  movie:       ['Netflix', 'Prime Video', 'Apple TV+'],
-  series:      ['HBO Max', 'Netflix', 'Prime Video'],
-  anime:       ['Crunchyroll', 'Netflix', 'Prime Video'],
-  documentary: ['Disney+', 'Netflix', 'Apple TV+'],
-};
-
 /**
  * Responsabilidade única: converter TmdbItem → Media (modelo de domínio).
  * Classe estática pura — sem efeitos colaterais, testável de forma isolada.
@@ -68,7 +61,6 @@ export class TmdbMediaMapper {
                      ? `${TMDB_POSTER_BASE_URL}${item.poster_path}`
                      : backdropPath,
       backdrop:    backdropPath,
-      streaming:   TmdbMediaMapper.getStreamingFallback(type, item.id),
       description: item.overview || 'No synopsis available.',
     };
   }
@@ -100,13 +92,6 @@ export class TmdbMediaMapper {
     };
 
     return [fallback[type]];
-  }
-
-  private static getStreamingFallback(type: MediaType, itemId: number): string[] {
-    const options = FALLBACK_STREAMING_OPTIONS[type] ?? FALLBACK_STREAMING_OPTIONS.movie;
-    if (options.length <= 2) return options;
-    const start = itemId % options.length;
-    return [options[start], options[(start + 1) % options.length]];
   }
 
   private static extractYear(rawDate?: string): number {

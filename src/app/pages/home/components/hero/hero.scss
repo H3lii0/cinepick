@@ -303,33 +303,12 @@
   max-width: 60ch;
 }
 
-.stream-row {
-  margin-top: 0.78rem;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  flex-wrap: wrap;
-}
-
-.stream-row small {
-  color: rgba(255, 255, 255, 0.46);
-}
-
-.stream-row span {
-  border-radius: 0.55rem;
-  font-size: 0.62rem;
-  font-weight: 700;
-  color: white;
-  padding: 0.24rem 0.45rem;
-}
-
 .rec-actions {
   margin-top: 0.95rem;
   display: flex;
   gap: 0.5rem;
 }
 
-.action-primary,
 .action-ghost {
   border-radius: 0.8rem;
   border: 0;
@@ -341,15 +320,6 @@
   font-weight: 700;
   padding: 0.58rem 0.85rem;
   transition: 160ms ease;
-}
-
-.action-primary {
-  color: black;
-  background: white;
-}
-
-.action-primary:hover {
-  transform: translateY(-1px);
 }
 
 .action-ghost {
