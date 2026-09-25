@@ -39,6 +39,12 @@ testem.log
 /typings
 __screenshots__/
 
+# Cloudflare local secrets
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+
 # System files
 .DS_Store
 Thumbs.db

@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:cloudflare": "ng build",
+    "deploy:cloudflare": "npm run build:cloudflare && npx wrangler deploy",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
