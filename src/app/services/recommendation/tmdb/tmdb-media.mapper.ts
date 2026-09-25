@@ -5,6 +5,7 @@ const TMDB_POSTER_BASE_URL      = 'https://image.tmdb.org/t/p/w500';
 const TMDB_BACKDROP_BASE_URL    = 'https://image.tmdb.org/t/p/w1280';
 const TMDB_ANIME_GENRE_ID       = 16;
 const TMDB_DOCUMENTARY_GENRE_ID = 99;
+const DESCRIPTION_MAX_LENGTH    = 330;
 
 const TMDB_GENRE_LABELS: Record<number, string> = {
   12:    'Adventure',
@@ -61,9 +62,9 @@ export class TmdbMediaMapper {
                      ? `${TMDB_POSTER_BASE_URL}${item.poster_path}`
                      : backdropPath,
       backdrop:    backdropPath,
-      description: item.overview || 'No synopsis available.',
+      description: TmdbMediaMapper.truncateDescription(item.overview),
       providers:   TmdbMediaMapper.mapProviders(item),
-      watchLink:   item.watch_providers?.link,
+      watchLink:   TmdbMediaMapper.watchProviders(item)?.link,
       trailerUrl:  TmdbMediaMapper.mapTrailer(item),
     };
   }
@@ -102,14 +103,40 @@ export class TmdbMediaMapper {
     return Number.isFinite(year) && year > 0 ? year : new Date().getFullYear();
   }
 
+  private static truncateDescription(description?: string): string {
+    const fallback = 'No synopsis available.';
+
+    if (!description?.trim()) return fallback;
+    if (description.length <= DESCRIPTION_MAX_LENGTH) return description;
+
+    const beforeLimit = description.slice(0, DESCRIPTION_MAX_LENGTH);
+    const lastPeriod = beforeLimit.lastIndexOf('.');
+
+    if (lastPeriod >= 0) {
+      return description.slice(0, lastPeriod + 1).trim();
+    }
+
+    const nextPeriod = description.indexOf('.', DESCRIPTION_MAX_LENGTH);
+    return nextPeriod >= 0
+      ? description.slice(0, nextPeriod + 1).trim()
+      : `${beforeLimit.trim()}...`;
+  }
+
   private static mapProviders(item: TmdbItem): string[] {
+    const watchProviders = TmdbMediaMapper.watchProviders(item);
     const providers = [
-      ...(item.watch_providers?.flatrate ?? []),
-      ...(item.watch_providers?.free ?? []),
-      ...(item.watch_providers?.ads ?? []),
+      ...(watchProviders?.flatrate ?? []),
+      ...(watchProviders?.free ?? []),
+      ...(watchProviders?.ads ?? []),
+      ...(watchProviders?.rent ?? []),
+      ...(watchProviders?.buy ?? []),
     ];
 
     return Array.from(new Map(providers.map(provider => [provider.provider_id, provider.provider_name])).values());
+  }
+
+  private static watchProviders(item: TmdbItem) {
+    return item['watch/providers']?.results?.['BR'];
   }
 
   private static mapTrailer(item: TmdbItem): string | undefined {

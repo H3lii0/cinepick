@@ -95,7 +95,6 @@ async function mediaDetails(request, env) {
     media_type: mediaType,
     genre_ids: (body.genres ?? []).map((genre) => genre.id),
     videos: body.videos?.results ?? [],
-    watch_providers: body['watch/providers']?.results?.BR ?? null,
   });
 }
 

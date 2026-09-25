@@ -438,9 +438,9 @@
     inset: 0;
     z-index: 40;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 1rem;
+    padding: 4.8rem 1rem 1rem;
     background: rgba(5, 5, 10, 0.72);
     backdrop-filter: blur(8px);
   }
@@ -460,8 +460,12 @@
   .rec-modal .rec-card {
     z-index: 1;
     width: min(42rem, 100%);
-    max-height: calc(100svh - 2rem);
+    max-height: min(38rem, calc(100svh - 5.8rem));
     margin: 0;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   .rec-modal-close {

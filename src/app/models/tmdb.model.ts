@@ -15,7 +15,7 @@ export interface TmdbItem {
   original_language: string;
   adult: boolean;
   videos?: TmdbVideo[];
-  watch_providers?: TmdbWatchProviders | null;
+  'watch/providers'?: TmdbWatchProvidersResponse;
 }
 
 export interface TmdbVideo {
@@ -39,6 +39,10 @@ export interface TmdbWatchProviders {
   ads?: TmdbWatchProvider[];
   rent?: TmdbWatchProvider[];
   buy?: TmdbWatchProvider[];
+}
+
+export interface TmdbWatchProvidersResponse {
+  results?: Record<string, TmdbWatchProviders>;
 }
 
 export interface TmdbResponse {
