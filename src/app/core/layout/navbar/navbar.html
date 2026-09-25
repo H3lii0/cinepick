@@ -11,9 +11,26 @@
     </button>
 
     <div class="top-tools">
-      <button type="button" class="tool-btn" (click)="toggleLang()" aria-label="Change language">
-        {{ langSvc.isEnglish() ? 'PT' : 'EN' }}
-      </button>
+      <div class="language-switcher" role="group" aria-label="Change language">
+        <button
+          type="button"
+          class="language-option"
+          [class.language-option-active]="!langSvc.isEnglish()"
+          [attr.aria-pressed]="!langSvc.isEnglish()"
+          (click)="setLanguage('pt-BR')"
+        >
+          PT
+        </button>
+        <button
+          type="button"
+          class="language-option"
+          [class.language-option-active]="langSvc.isEnglish()"
+          [attr.aria-pressed]="langSvc.isEnglish()"
+          (click)="setLanguage('en')"
+        >
+          EN
+        </button>
+      </div>
     </div>
   </div>
 </header>

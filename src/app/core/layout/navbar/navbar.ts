@@ -31,7 +31,7 @@ export class Navbar {
   }
 
 
-  toggleLang(): void {
-    this.langSvc.toggle();
+  setLanguage(lang: 'pt-BR' | 'en'): void {
+    this.langSvc.setLang(lang);
   }
 }
