@@ -46,11 +46,7 @@
             [size]="18"
             [svgStyle]="isLoading() ? 'sparkles-draw' : ''"
           />
-          @if (isLoading()) {
-            {{ 'hero.loading' | transloco }}
-          } @else {
-            {{ 'hero.cta' | transloco }}
-          }
+          {{ 'hero.cta' | transloco }}
         </button>
       </div>
 
@@ -59,18 +55,14 @@
       }
     </div>
 
-    @if (isSpinning() && spinPoster(); as poster) {
-      <div class="rec-modal spin-modal" role="status" aria-live="polite">
+    @if (isSpinning()) {
+      <div class="rec-modal spin-modal" role="status" aria-live="polite" [attr.aria-label]="'hero.loading' | transloco">
         <div class="spin-content">
-          <p>{{ 'hero.loading' | transloco }}</p>
           <div class="spin-stack" aria-hidden="true">
             <div class="spin-stack-back"></div>
-            @if (nextSpinPoster(); as nextPoster) {
-              <img class="spin-stack-middle" [src]="nextPoster" alt="" />
-            } @else {
-              <div class="spin-stack-middle"></div>
+            @for (poster of spinPosters(); track $index; let index = $index) {
+              <img class="spin-poster" [class.spin-passed]="index < spinIndex()" [class.spin-out-right]="index === spinIndex() && spinPhase() === 'out' && spinDirection() === 'right'" [class.spin-out-left]="index === spinIndex() && spinPhase() === 'out' && spinDirection() === 'left'" [style.z-index]="spinPosters().length - index" [src]="poster" alt="" />
             }
-            <img class="spin-poster" [class.spin-out-right]="spinPhase() === 'out' && spinDirection() === 'right'" [class.spin-out-left]="spinPhase() === 'out' && spinDirection() === 'left'" [src]="poster" alt="" />
           </div>
         </div>
       </div>

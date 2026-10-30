@@ -32,8 +32,8 @@ export class Hero {
   readonly recommendationError = signal<string | null>(null);
   readonly isLoading = signal(false);
   readonly isSpinning = signal(false);
-  readonly spinPoster = signal<string | null>(null);
-  readonly nextSpinPoster = signal<string | null>(null);
+  readonly spinPosters = signal<string[]>([]);
+  readonly spinIndex = signal(0);
   readonly spinDirection = signal<'left' | 'right'>('right');
   readonly spinPhase = signal<'out' | 'in'>('in');
   private requestVersion = 0;
@@ -43,7 +43,7 @@ export class Hero {
     this.requestVersion++;
     this.isLoading.set(false);
     this.isSpinning.set(false);
-    this.spinPoster.set(null);
+    this.spinPosters.set([]);
     this.selectedFilter.set(filter);
     this.recommendation.set(null);
     this.setModalScrollLock(false);
@@ -54,7 +54,7 @@ export class Hero {
     this.requestVersion++;
     this.isLoading.set(false);
     this.isSpinning.set(false);
-    this.spinPoster.set(null);
+    this.spinPosters.set([]);
     this.recommendation.set(null);
     this.setModalScrollLock(false);
   }
@@ -85,7 +85,7 @@ export class Hero {
         this.requestVersion++;
         this.isLoading.set(false);
         this.isSpinning.set(false);
-        this.spinPoster.set(null);
+        this.spinPosters.set([]);
         this.recommendationError.set('hero.error');
         this.setModalScrollLock(false);
       }
@@ -93,7 +93,7 @@ export class Hero {
       if (version === this.requestVersion) {
         this.isLoading.set(false);
         this.isSpinning.set(false);
-        this.spinPoster.set(null);
+        this.spinPosters.set([]);
       }
     }
   }
@@ -114,8 +114,8 @@ export class Hero {
     posters = posters.filter((_, index) => loaded[index]);
     if (posters.length < 2) return;
     this.recommendation.set(null);
-    this.spinPoster.set(posters[0]);
-    this.nextSpinPoster.set(posters[1]);
+    this.spinPosters.set(posters);
+    this.spinIndex.set(0);
     this.spinPhase.set('in');
     this.isSpinning.set(true);
     this.setModalScrollLock(true);
@@ -126,10 +126,9 @@ export class Hero {
       this.spinPhase.set('out');
       await new Promise(resolve => setTimeout(resolve, 360));
       if (version !== this.requestVersion) return;
-      this.spinPoster.set(posters[i]);
+      this.spinIndex.set(i);
       this.spinPhase.set('in');
-      this.nextSpinPoster.set(posters[i + 1] ?? null);
-      await new Promise(resolve => setTimeout(resolve, 30 + i * 15));
+      await new Promise(resolve => setTimeout(resolve, 25 + i * 12));
     }
   }
 

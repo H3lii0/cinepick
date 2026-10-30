@@ -186,12 +186,12 @@
 
 .spin-stack {
   position: relative;
-  width: clamp(9rem, 20vw, 13rem);
+  width: min(15rem, 55vw, 38svh);
   aspect-ratio: 2 / 3;
   perspective: 800px;
 }
 
-.spin-stack-back, .spin-stack-middle, .spin-poster {
+.spin-stack-back, .spin-poster {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -201,8 +201,8 @@
 }
 
 .spin-stack-back { background: #44325b; transform: rotate(7deg) translate(0.5rem, -0.3rem); }
-.spin-stack-middle { background: #6d4a7b; object-fit: cover; transform: rotate(3deg) translate(0.25rem, -0.15rem); }
 .spin-poster { object-fit: cover; transform: translateX(0) rotate(0); opacity: 1; }
+.spin-poster.spin-passed { opacity: 0; visibility: hidden; }
 .spin-poster.spin-out-right, .spin-poster.spin-out-left {
   opacity: 0;
   transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1), opacity 360ms ease-in-out;
