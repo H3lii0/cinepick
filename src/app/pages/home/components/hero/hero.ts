@@ -32,9 +32,18 @@ export class Hero {
   readonly recommendationError = signal<string | null>(null);
   readonly isLoading = signal(false);
   readonly isSpinning = signal(false);
+  readonly spinPoster = signal<string | null>(null);
+  readonly nextSpinPoster = signal<string | null>(null);
+  readonly spinDirection = signal<'left' | 'right'>('right');
+  readonly spinPhase = signal<'out' | 'in'>('in');
+  private requestVersion = 0;
   private readonly recommendationService = inject(Recommendation);
 
   onHeroFilterSelect(filter: MediaFilter): void {
+    this.requestVersion++;
+    this.isLoading.set(false);
+    this.isSpinning.set(false);
+    this.spinPoster.set(null);
     this.selectedFilter.set(filter);
     this.recommendation.set(null);
     this.setModalScrollLock(false);
@@ -42,6 +51,10 @@ export class Hero {
   }
 
   dismissRecommendation(): void {
+    this.requestVersion++;
+    this.isLoading.set(false);
+    this.isSpinning.set(false);
+    this.spinPoster.set(null);
     this.recommendation.set(null);
     this.setModalScrollLock(false);
   }
@@ -52,7 +65,7 @@ export class Hero {
     }
 
     this.isLoading.set(true);
-    this.isSpinning.set(true);
+    const version = ++this.requestVersion;
     this.recommendationError.set(null);
 
     try {
@@ -61,23 +74,82 @@ export class Hero {
         fallbackBackdrop: this.heroBackdrop,
         excludeId: exclude,
         language: this.langSvc.lang() === 'pt-BR' ? 'pt-BR' : 'en-US',
+        onCandidates: posters => this.animatePosters(posters, version),
       });
+      if (version !== this.requestVersion) return;
+      this.isSpinning.set(false);
       this.recommendation.set(recommendation);
       this.setModalScrollLock(true);
     } catch (error) {
-      this.recommendationError.set('hero.error');
+      if (version === this.requestVersion) {
+        this.requestVersion++;
+        this.isLoading.set(false);
+        this.isSpinning.set(false);
+        this.spinPoster.set(null);
+        this.recommendationError.set('hero.error');
+        this.setModalScrollLock(false);
+      }
     } finally {
-      this.isLoading.set(false);
-      this.isSpinning.set(false);
+      if (version === this.requestVersion) {
+        this.isLoading.set(false);
+        this.isSpinning.set(false);
+        this.spinPoster.set(null);
+      }
     }
   }
 
   ngOnDestroy(): void {
+    this.requestVersion++;
     this.setModalScrollLock(false);
   }
 
   mediaTypeLabel(type: MediaType): string {
     return `mediaType.${type}`;
+  }
+
+  private async animatePosters(posters: string[], version: number): Promise<void> {
+    if (version !== this.requestVersion || posters.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const loaded = await Promise.all(posters.map(url => this.preloadPoster(url)));
+    if (version !== this.requestVersion || !loaded[loaded.length - 1]) return;
+    posters = posters.filter((_, index) => loaded[index]);
+    if (posters.length < 2) return;
+    this.recommendation.set(null);
+    this.spinPoster.set(posters[0]);
+    this.nextSpinPoster.set(posters[1]);
+    this.spinPhase.set('in');
+    this.isSpinning.set(true);
+    this.setModalScrollLock(true);
+    await new Promise(resolve => setTimeout(resolve, 550));
+    for (let i = 1; i < posters.length; i++) {
+      if (version !== this.requestVersion) return;
+      this.spinDirection.set(i % 2 === 1 ? 'right' : 'left');
+      this.spinPhase.set('out');
+      await new Promise(resolve => setTimeout(resolve, 360));
+      if (version !== this.requestVersion) return;
+      this.spinPoster.set(posters[i]);
+      this.spinPhase.set('in');
+      this.nextSpinPoster.set(posters[i + 1] ?? null);
+      await new Promise(resolve => setTimeout(resolve, 30 + i * 15));
+    }
+  }
+
+  private preloadPoster(url: string): Promise<boolean> {
+    return new Promise(resolve => {
+      const image = new Image();
+      const timeout = setTimeout(() => finish(false), 5000);
+      const finish = (success: boolean) => {
+        clearTimeout(timeout);
+        image.onload = null;
+        image.onerror = null;
+        resolve(success);
+      };
+      image.onload = () => {
+        if (image.decode) image.decode().then(() => finish(true), () => finish(true));
+        else finish(true);
+      };
+      image.onerror = () => finish(false);
+      image.src = url;
+    });
   }
 
   private setModalScrollLock(locked: boolean): void {

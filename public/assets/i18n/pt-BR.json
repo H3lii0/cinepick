@@ -21,6 +21,10 @@
     "whereToWatch": "Onde assistir",
     "trailer": "Ver trailer"
   },
+  "footer": {
+    "tmdbDisclaimer": "Este produto usa a API do TMDB, mas não é endossado nem certificado pelo TMDB.",
+    "streamingAttribution": "Os dados de disponibilidade em streaming são fornecidos pelo"
+  },
   "mediaType": {
     "movie": "Filme",
     "series": "Série",

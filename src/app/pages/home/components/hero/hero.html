@@ -26,6 +26,7 @@
           <button
             type="button"
             class="pill-btn"
+            [disabled]="isLoading()"
             [class.pill-btn-active]="selectedFilter() === filterId"
             (click)="onHeroFilterSelect(filterId)"
           >
@@ -58,6 +59,22 @@
       }
     </div>
 
+    @if (isSpinning() && spinPoster(); as poster) {
+      <div class="rec-modal spin-modal" role="status" aria-live="polite">
+        <div class="spin-content">
+          <p>{{ 'hero.loading' | transloco }}</p>
+          <div class="spin-stack" aria-hidden="true">
+            <div class="spin-stack-back"></div>
+            @if (nextSpinPoster(); as nextPoster) {
+              <img class="spin-stack-middle" [src]="nextPoster" alt="" />
+            } @else {
+              <div class="spin-stack-middle"></div>
+            }
+            <img class="spin-poster" [class.spin-out-right]="spinPhase() === 'out' && spinDirection() === 'right'" [class.spin-out-left]="spinPhase() === 'out' && spinDirection() === 'left'" [src]="poster" alt="" />
+          </div>
+        </div>
+      </div>
+    }
     @if (recommendation(); as rec) {
       <div class="rec-modal" role="dialog" aria-modal="true" [attr.aria-label]="rec.title">
         <button
@@ -112,25 +129,20 @@
                       <span class="provider-chip">{{ provider }}</span>
                     }
                   </div>
-                  <!-- @if (rec.watchLink) {
-                    <a class="watch-link" [href]="rec.watchLink" target="_blank" rel="noopener noreferrer">
-                      {{ 'recCard.whereToWatch' | transloco }}
-                    </a>
-                  } -->
                 </div>
               }
 
               <p>{{ rec.description }}</p>
 
               <div class="rec-actions">
-                <!-- <button
+                <button
                   type="button"
                   class="action-ghost"
                   [disabled]="isLoading()"
                   (click)="handleRecommend(rec.id)"
                 >
                   {{ 'recCard.tryAnother' | transloco }}
-                </button> -->
+                </button>
                 @if (rec.trailerUrl) {
                   <a
                     class="action-ghost trailer-link"

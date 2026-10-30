@@ -8,6 +8,7 @@ type RecommendationRequest = {
   fallbackBackdrop: string;
   excludeId?:       number;
   language?:        RecommendationLanguage;
+  onCandidates?:    (posters: string[]) => Promise<void>;
 };
 
 /**
@@ -42,11 +43,14 @@ export class Recommendation {
       }
 
       const selected = valid[Math.floor(Math.random() * valid.length)];
-      const item = await this.client.fetchDetails(
-        selected.media_type,
-        selected.id,
-        language,
-      );
+      const posters = valid.filter(item => item.poster_path && item !== selected)
+        .sort(() => Math.random() - 0.5).slice(0, 7)
+        .map(item => `https://image.tmdb.org/t/p/w500${item.poster_path}`);
+      posters.push(selected.poster_path ? `https://image.tmdb.org/t/p/w500${selected.poster_path}` : request.fallbackBackdrop);
+      const [item] = await Promise.all([
+        this.client.fetchDetails(selected.media_type, selected.id, language),
+        request.onCandidates?.(posters),
+      ]);
       return TmdbMediaMapper.toMedia(item, request.filter, request.fallbackBackdrop);
     } finally {
       this.loading.set(false);
